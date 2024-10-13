@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Countdown</title>
 		<style>
+
 			body {
 				font-family: Arial, sans-serif;
 				display: flex;
@@ -13,25 +14,12 @@
 				height: 100vh;
 				margin: 0;
 			}
-      
-			.background {
-				top: 0;
-				left: 0;
-				height: 100vh;
-				width: 100vw;
-				position: absolute;
-				backdrop-filter: invert(1);
-				mix-blend-mode: difference;
-				z-index: 1;
-			}
 
 			.countdown {
 				display: flex;
 				gap: 20px;
 				font-variant: all-petite-caps;
-				background: inherit; /* Rendi il background ereditato */
-				background-clip: text; /* Clip per il background */
-				-webkit-background-clip: text; /* Clip per il background */
+        color: #888888;
 			}
 
 			.time-box {
@@ -44,20 +32,15 @@
 			.time {
 				font-size: 48px;
 				font-weight: bold;
-				color: #fff;
-				mix-blend-mode: difference;
 			}
 
 			.label {
 				font-size: 18px;
 				margin-top: 10px;
-				color: #fff;
-				mix-blend-mode: difference;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="background"></div>
 		<div class="countdown">
 			<div class="time-box">
 				<div id="days" class="time">0</div>
@@ -81,6 +64,7 @@
 				const endDate = new Date("November 8, 2024 00:00:00").getTime();
 
 				const x = setInterval(function () {
+
 					const now = new Date().getTime();
 					const distance = endDate - now;
 
