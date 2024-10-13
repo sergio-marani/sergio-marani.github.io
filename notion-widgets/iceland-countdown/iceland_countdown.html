@@ -1,92 +1,111 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Countdown</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-      }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Countdown</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				margin: 0;
+			}
+      
+			.background {
+				top: 0;
+				left: 0;
+				height: 100vh;
+				width: 100vw;
+				position: absolute;
+				backdrop-filter: invert(1);
+				mix-blend-mode: difference;
+				z-index: 1;
+			}
 
-      .countdown {
-        display: flex;
-        gap: 20px;
-        font-variant: all-petite-caps;
-      }
+			.countdown {
+				display: flex;
+				gap: 20px;
+				font-variant: all-petite-caps;
+				background: inherit; /* Rendi il background ereditato */
+				background-clip: text; /* Clip per il background */
+				-webkit-background-clip: text; /* Clip per il background */
+			}
 
-      .time-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-      }
+			.time-box {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 20px;
+			}
 
-      .time {
-        font-size: 48px;
-        font-weight: bold;
-        color: #fff;
-        mix-blend-mode: difference;
-      }
+			.time {
+				font-size: 48px;
+				font-weight: bold;
+				color: #fff;
+				mix-blend-mode: difference;
+			}
 
-      .label {
-        font-size: 18px;
-        margin-top: 10px;
-        color: #fff;
-        mix-blend-mode: difference;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="countdown">
-      <div class="time-box">
-        <div id="days" class="time">0</div>
-        <div class="label">Giorni</div>
-      </div>
-      <div class="time-box">
-        <div id="hours" class="time">0</div>
-        <div class="label">Ore</div>
-      </div>
-      <div class="time-box">
-        <div id="minutes" class="time">0</div>
-        <div class="label">Minuti</div>
-      </div>
-      <div class="time-box">
-        <div id="seconds" class="time">0</div>
-        <div class="label">Secondi</div>
-      </div>
-    </div>
-    <script>
-      function countdown() {
-        const endDate = new Date("November 8, 2024 00:00:00").getTime();
+			.label {
+				font-size: 18px;
+				margin-top: 10px;
+				color: #fff;
+				mix-blend-mode: difference;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="background"></div>
+		<div class="countdown">
+			<div class="time-box">
+				<div id="days" class="time">0</div>
+				<div class="label">Giorni</div>
+			</div>
+			<div class="time-box">
+				<div id="hours" class="time">0</div>
+				<div class="label">Ore</div>
+			</div>
+			<div class="time-box">
+				<div id="minutes" class="time">0</div>
+				<div class="label">Minuti</div>
+			</div>
+			<div class="time-box">
+				<div id="seconds" class="time">0</div>
+				<div class="label">Secondi</div>
+			</div>
+		</div>
+		<script>
+			function countdown() {
+				const endDate = new Date("November 8, 2024 00:00:00").getTime();
 
-        const x = setInterval(function () {
-          const now = new Date().getTime();
-          const distance = endDate - now;
+				const x = setInterval(function () {
+					const now = new Date().getTime();
+					const distance = endDate - now;
 
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+					const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					const hours = Math.floor(
+						(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+					);
+					const minutes = Math.floor(
+						(distance % (1000 * 60 * 60)) / (1000 * 60)
+					);
+					const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-          document.getElementById("days").innerHTML = days;
-          document.getElementById("hours").innerHTML = hours;
-          document.getElementById("minutes").innerHTML = minutes;
-          document.getElementById("seconds").innerHTML = seconds;
+					document.getElementById("days").innerHTML = days;
+					document.getElementById("hours").innerHTML = hours;
+					document.getElementById("minutes").innerHTML = minutes;
+					document.getElementById("seconds").innerHTML = seconds;
 
-          if (distance < 0) {
-            clearInterval(x);
-            document.querySelector(".countdown").innerHTML = "Countdown Terminato";
-          }
-        }, 1000);
-      }
-
-      countdown();
-    </script>
-  </body>
+					if (distance < 0) {
+						clearInterval(x);
+						document.querySelector(".countdown").innerHTML =
+							"Countdown Terminato";
+					}
+				}, 1000);
+			}
+			countdown();
+		</script>
+	</body>
 </html>
