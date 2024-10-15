@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Countdown</title>
 		<style>
-
 			body {
 				font-family: Arial, sans-serif;
 				display: flex;
@@ -17,16 +16,17 @@
 
 			.countdown {
 				display: flex;
-				gap: 20px;
 				font-variant: all-petite-caps;
-        color: #888888;
+				color: #888888;
+				width: 100%;
+				justify-content: space-between;
+				padding: 0 0.5rem;
 			}
 
 			.time-box {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				padding: 20px;
 			}
 
 			.time {
@@ -64,7 +64,6 @@
 				const endDate = new Date("November 8, 2024 00:00:00").getTime();
 
 				const x = setInterval(function () {
-
 					const now = new Date().getTime();
 					const distance = endDate - now;
 
